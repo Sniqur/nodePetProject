@@ -20,7 +20,7 @@ jobs:
        
         - name: Push to DockerHub
           run: |
-            docker build -t my-node-app .
+            docker build -t steeve05/my-node-app .
             docker push steeve05/my-node-app:tagname
           
 
