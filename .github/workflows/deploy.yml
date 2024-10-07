@@ -1,0 +1,41 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs: 
+    
+    build:
+        runs-on: ubuntu-latest
+        
+        steps: 
+        - uses: actions/checkout@v4
+        - name: Login DockerHub
+          env: 
+            DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+            DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+
+          run: sudo docker login -u $DOCKER_USERNAME -p DOCKER_PASSWORD
+
+        - name: Push to DockerHub
+          run: | 
+              sudo docker build
+              sudo docker push 
+
+
+            with:
+            context: .
+            push: true
+            tags: steeve05/my-node-app:latest
+
+        - name: SSH to EC2 and deploy
+          uses: webfactory/ssh-agent@v0.5.3
+          with:
+          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+
+          run: |
+            ssh -o StrictHostKeyChecking=no ubuntu@ec2-52-55-52-46 << 'EOF'
+            docker pull steeve05/my-node-app:latest
+            docker run -d -p 3000:3000 --name my-node-app steeve05/my-node-app:latest
+            EOF
