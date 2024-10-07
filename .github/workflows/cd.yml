@@ -1,0 +1,27 @@
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types: 
+      - completed
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - name: Pull Docker image DockerHub
+      run: sudo docker pull steeve05/my-node-app:latest
+   
+    - name: Delete old docker container
+      run: sudo docker rm -f cicd-pipeline-container || true
+
+    - name: Run Latest Docker Container
+      run: sudo docker run -d -p 8080:80 --name cicd-pipeline-container steeve05/my-node-app
+   
+
+
+
+

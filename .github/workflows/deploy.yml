@@ -27,14 +27,14 @@ jobs:
           
 
 
-        - name: Set up SSH agent
-          uses: webfactory/ssh-agent@v0.5.3
-          with:
-              ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+        # - name: Set up SSH agent
+        #   uses: webfactory/ssh-agent@v0.5.3
+        #   with:
+        #       ssh-private-key: {{ secrets.EC2_SSH_KEY }}
     
-        - name: Deploy to EC2
-          run: |
-              ssh -o StrictHostKeyChecking=no ubuntu@ec2-52-55-52-46 << 'EOF'
-              docker pull steeve05/my-node-app:latest
-              docker run -d -p 3000:3000 --name my-node-app steeve05/my-node-app:latest
-              EOF
+        # - name: Deploy to EC2
+        #   run: |
+        #       ssh -o StrictHostKeyChecking=no ubuntu@ec2-52-55-52-46 << 'EOF'
+        #       docker pull steeve05/my-node-app:latest
+        #       docker run -d -p 3000:3000 --name my-node-app steeve05/my-node-app:latest
+        #       EOF
