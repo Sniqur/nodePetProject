@@ -19,11 +19,7 @@ jobs:
           run: sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
        
         - name: Push to DockerHub
-          uses: docker/build-push-action@v2
-          with:
-            context: .
-            push: true
-            tags: steeve05/my-node-app:latest
+          run: docker push steeve05/my-node-app:tagname
           
 
 
