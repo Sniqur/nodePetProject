@@ -19,7 +19,9 @@ jobs:
           run: sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
        
         - name: Push to DockerHub
-          run: docker push steeve05/my-node-app:tagname
+          run: |
+            docker build -t my-node-app .
+            docker push steeve05/my-node-app:tagname
           
 
 
