@@ -22,7 +22,8 @@ jobs:
       run: sudo docker run -d -p 8000:3000 --name cicd-pipeline-container steeve05/my-node-app
    
 
-
+ 
+      
 
 
 
