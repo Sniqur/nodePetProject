@@ -19,10 +19,10 @@ jobs:
       run: sudo docker rm -f cicd-pipeline-container || true
 
     - name: Run Latest Docker Container
-      run: sudo docker run -d -p 8080:80 --name cicd-pipeline-container steeve05/my-node-app
+      run: sudo docker run -d -p 8000:3000 --name cicd-pipeline-container steeve05/my-node-app
    
 
-      
+
 
 
 
