@@ -19,14 +19,12 @@ jobs:
           run: sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
        
         - name: Push to DockerHub
-          # uses: docker/build-push-action@v2
-          # with:
-          #   context: .
-          #   push: true
-          #   tags: steeve05/my-node-app:latest
-          run: |
-               sudo docker build -t my-node-app .
-               docker push steeve05/my-node-app:tagname
+          uses: docker/build-push-action@v2
+          with:
+            context: .
+            push: true
+            tags: steeve05/my-node-app:latest
+          
 
 
         - name: Set up SSH agent
