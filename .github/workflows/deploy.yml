@@ -25,7 +25,7 @@ jobs:
           #   push: true
           #   tags: steeve05/my-node-app:latest
           run: |
-               sudo docker build -t cicd-pipeline .
+               sudo docker build -t my-node-app .
                docker push steeve05/my-node-app:tagname
 
 
