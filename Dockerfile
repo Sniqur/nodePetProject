@@ -13,7 +13,7 @@ RUN npm install
 COPY . .
 
 # Expose the port that your app runs on (default for Express is 3000)
-EXPOSE 3000
+EXPOSE 3000 
 
 # Command to run the application
 CMD ["node", "app.js"]
